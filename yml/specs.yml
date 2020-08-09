@@ -1,0 +1,134 @@
+# options:       contains global options for the table
+#
+#    filter:     boolean enable/disable filtering routines
+#    sort:       boolean enable/disable sorting routines
+#    export:     boolean enable/disable data export as CSV
+#    dateFormat: fallback date format string for the whole table (see below)
+#    htmlAlt:    fallback 'bad value text' for the whole table (see below)
+#
+#
+# table:         a list of table columns with their properties, where
+#                the order of the items defines the table columns order
+#
+#    header:     string to be displayed as the column header
+#
+#    key:        data key (matching structures that will be read into
+#                the JavaScript 'data' array by the code in data.js
+#
+#    type:       data type with the following possible values:
+#
+#                    str, int, intrange, ip, date, version
+#
+#                the supplied raw data needs to conform to the data type
+#                defined here to be correctly displayed/filtered/sorted;
+#                see the comments to the 'normalizeDataValue()' function
+#                in the 'common.js' for more specifics about each data
+#                type that is supported by this framework
+#
+#    htmlAlt:    HTML to be displayed in case the supplied data value
+#                does not conform to the data type defined;
+#                if this value is provided, make sure it contains escaped
+#                HTML entities as it will be taken as literal HTML;
+#                if this option is omitted then 'bad' cell values will
+#                be displayed as 'next best possible String like' value
+#                which may result in cell values like 'undefined', etc.
+#
+#    dateFormat: optional moment.js format string for date type formatting,
+#                requires moment.js library to be loaded from the main HTML;
+#                see https://momentjs.com/docs/#/displaying/format/
+#
+#    cssClass:   a list of CSS classes to apply to the table column
+#                can be a string (single class) or a list of classes
+#
+#
+# views:         defines collections of visible columns known as 'views'
+#                allowing to easily show and hide selections of columns
+#
+#                'view' is a list of columns keys taken from the 'table'
+#                definition; the order of keys matters and will define
+#                the actual order of the displayed table columns
+#
+#                switching between the views should be done via custom
+#                code in 'data.js' that should decide which view was
+#                requested by the user and then calling function 
+#                updateView(viewName), where viewName is one of the names
+#                defined in this file
+#
+#                there are two special view names: '_default' and 'full':
+#
+#    full:       full view is essentially all of the columns as listed
+#                under the 'table' definition here, so there is no need
+#                to define 'full' view and list all the columns again
+#
+#    _default:   this special view is an alias for another view that
+#                that should be displayed, if no view is explicitly chosen;
+#                if the _default view is not defined here, the 'full'
+#                view will be assumed as the default view.
+
+options:
+  filter: true
+  sort: true
+  export: true
+  dateFormat: DD-MMM-YY, HH:mm:ss Z
+  htmlAlt: "?"
+
+table:
+  - header: ID
+    key: id
+    type: int
+
+  - header: Label
+    key: label
+    type: str
+
+  - header: Source IP
+    key: src
+    type: ip
+    cssClass: source
+
+  - header: Source Host
+    key: srcName
+    type: str
+    cssClass: source
+
+  - header: Destination
+    key: dst
+    type: ip
+    cssClass: [destination, centred]
+
+  - header: Destination Host
+    key: dstName
+    type: str
+    cssClass: [destination, centred]
+
+  - header: Protocol
+    key: proto
+    type: str
+
+  - header: Ports
+    key: ports
+    type: intrange
+
+  - header: Version
+    key: ver
+    type: version
+
+  - header: Last Updated
+    key: lastupd
+    type: date
+
+views:
+
+  _default: partial
+
+  partial:
+    - label
+    - src
+    - dst
+    - proto
+    - ports
+
+  minimal:
+    - label
+    - ver
+    - lastupd

@@ -1,0 +1,44 @@
+- id: 318816
+  name: Some service for security
+  src: 10.139.50.254
+  dst: 10.139.118.254
+  proto: TCP
+  ports: 636
+  version: 1.0.1
+  timestamp: 2019-01-29 12:45:54
+
+- id: 3233433
+  name: Another service for some App
+  src: 192.168.1.10
+  dst: 10.129.118.11
+  proto: TCP
+  ports: 1000-1200
+  version: 1.0.4
+  timestamp: 2020-01-29 08:45:54
+
+- id: 1234567
+  name: Streaming Server
+  src: 50.22.36.33
+  dst: 172.19.33.1
+  proto: UDP
+  ports: 50123
+  version: 0.9.9
+  timestamp: 2019-11-12 12:37:28
+
+- id: 8938297
+  name: Database Mirror
+  src: 172.19.33.1
+  dst: 50.19.36.33
+  proto: TCP
+  ports: 30123
+  version: 1.2.4
+  timestamp: 2019-12-29 18:22:19
+
+- id: 8938297
+  name: Database Mirror
+  src: 50.19.36.33
+  dst: 172.19.33.1
+  proto: TCP
+  ports: 30123
+  version: 1.2.4
+  timestamp: 2019-12-29 18:22:19

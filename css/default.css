@@ -1,0 +1,35 @@
+/* Basic elements */
+body {background-color: #edf8ed}
+#error {background: #fafafa; border: 1px solid red; font: normal 14px Consolas, "Courier New", Courier, monospace; padding: 10px; line-height:22px}
+[hidden] {display: none !important}
+
+/* Filter and export controls */
+header {margin: 0; padding: 0; display: grid; align-content: center; grid-template-columns: auto 120px;}
+#filter-block, #export-block {padding:0; margin: 0}
+#export-block {justify-self: flex-end}
+#filter-block input {margin: 0 0 10px 0; background: #fafafa; border: 1px solid #666666; width:1000px; padding: 3px 5px; font: normal 14px Consolas, "Courier New", Courier, monospace}
+#filter-block #filter-error {font: normal 14px Consolas, "Courier New", Courier, monospace; color:#580000; margin: 0 10px 10px 10px; padding: 2px 5px; border: 1px solid #ff8282; display: inline-block}
+#filter-block button, #export-block button {min-width: 120px; border: 1px solid #999999; margin: 0 0 0 5px; padding: 3px 2px}
+#filter-block #filter-help {min-width: 30px; width: 30px}
+
+/* Help block styling, probably very little needs to be changed here, unless you want your help text too look very different */
+#help-block {font: normal 13px Verdana, Arial, Helvetica, sans-serif; line-height: 18px; background:#fafafa; border: 1px solid #333333; padding:10px; margin:0 5px 5px 0}
+#help-block p {margin: 5px 0 10px 0; line-height: 18px}
+#help-block li {margin-top: 10px}
+#help-block ul ul {padding: 0}
+#help-block li li {list-style-type: none; padding-left: 0}
+#help-block var {font: normal 14px Consolas, "Courier New", Courier, monospace; display: inline-block; padding: 0 3px 0 2px; background: #f0f0f0}
+#help-block code {font: normal 14px Consolas, "Courier New", Courier, monospace}
+
+/* Standard table zebra colouring, serves as bottom layer on which semitransparent cell colours should be painted */
+/* Please keep all of the class names defined below (can be extended) -- those are referenced by the code in main.js */
+#data-table {border-collapse: collapse; border: 1px solid #666666; font: normal 13px Tahoma, Verdana, sans-serif; max-width: 99%}
+#data-table tr {background-color: #666666}
+#data-table tr:nth-child(2n) {background-color: #999999}
+#data-table tr:hover {background-color:#333333}
+#data-table tr th {background: #666666; color: #fafafa; text-align: center; -webkit-user-select: none; -moz-user-select: none}
+#data-table tr td, #data-table tr th {border: 1px solid #aaaaaa; padding:2px 4px 2px 6px; white-space: nowrap}
+#data-table tr th.asc {background: #555555; color: #bfffbf}
+#data-table tr th.desc {background: #555555; color: #dbdbff}
+#data-table.sortable tr th {cursor: pointer}
+#data-table.filterable tr td {cursor: copy}

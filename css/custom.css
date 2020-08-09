@@ -1,0 +1,24 @@
+/* ATTENTION! ATTENTION! ATTENTION! */
+/* The CSS definitions below are only to showcase the current sample code in 'data.js' and sample definitions in 'specs.yml' */
+/* Don't copy these CSS rules below blindly to your new project! */
+/* Most of them won't make any sense there (except for maybe .bad-value class that gets auto-applied as a standard feature)! */
+
+#data-table caption {text-align: left; margin: 5px}
+#data-table caption output {margin-left: 50px}
+
+#data-table tr td {background-color: rgba(237, 255, 236, 0.66)}
+#data-table td.source {background-color: rgba(219, 233, 253, 0.75)}
+#data-table td.destination {background-color: rgba(201, 253, 204, 0.75)}
+#data-table td.centred {text-align: center}
+#data-table tr.highlight-row td {background: #e7ffc1}
+#data-table tr td.bad-value {background: #ffbaba}
+
+#data-table.hide-links a {display: none}
+label.view-selector {font: normal 10pt Tahoma, Verdana, sans-serif; margin: 15px 5px 20px 5px; display: block}
+label.view-selector button {margin-left: 20px}
+label.view-selector button.selected {border: 2px solid black}
+label.show-hide-links {font: normal 10pt Tahoma, Verdana, sans-serif; margin: 15px 5px 20px 5px; cursor: pointer; display: block}
+
+#data-table thead tr th.sorted {border-left: 2px solid black; border-right: 2px solid black; border-top: 2px solid black}
+#data-table tbody tr td.sorted {border-left: 2px solid black; border-right: 2px solid black}
+#data-table > tbody > tr:last-child > td.sorted {border-bottom: 2px solid black}

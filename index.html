@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8,9">
+    <title>YAML-to-Table</title>
+    <script src="js/badbrowser.js" nomodule></script>
+    <!--[if !IE]>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.14.0/js-yaml.min.js" integrity="sha512-ia9gcZkLHA+lkNST5XlseHz/No5++YBneMsDp1IZRJSbi1YqQvBeskJuG1kR+PH1w7E0bFgEZegcj0EwpXQnww==" crossorigin="anonymous"></script>
+    <!-- Moment.JS is an optional library, only if custom date/time formatting is required (see dateFormat in 'specs.yml'), otherwise can be removed -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
+    <script type="module" src="js/main.js"></script>
+    <!--<![endif]-->
+    <link href="css/default.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet"> <!-- make sure to adjust this according to your needs coming from your custom 'specs.yml' and/or your custom 'data.js' -->
+</head>
+<body>
+
+     <!-- ATTENTION: Please keep all HTML elements 'id' values specified below without changes -- the code in 'main.js' relies on those. -->
+
+    <header>
+        <div id="filter-block" hidden>
+            <input id="filter" autocomplete="off" spellcheck="false"></input>
+            <button id="filter-help">?</button>
+            <button id="filter-clear">Clear</button>
+            <button id="filter-apply">Filter</button>
+            <output id="filter-error" hidden>this is an error</output>
+        </div>
+        <div id="export-block" hidden>
+            <button>Export</button>
+        </div>
+    </header>
+
+    <article id="help-block" hidden>
+        <p>Filter should contain one or more conditional statements. Each statement should contain three elements:</p>
+        <ul>
+            <li>
+                <strong>Field Name</strong><br/>
+                Can be obtained by hovering cursor over the column heading or simply by clicking inside a particular table cell.
+                Possible values are as follows:<br/>
+                <span id="field-names"></span>
+            </li>
+            <li>
+                <strong>Comparison Operator</strong>
+                <ul>
+                    <li><var>=</var> or <var>==</var> (complete string match, case insensitive)</li>
+                    <li><var>!=</var> (does not equal, case insensitive)</li>
+                    <li><var>~</var> (matches regex, case insensitive)</li>
+                    <li><var>!~</var> (does not match regex, case insensitive)</li>
+                    <li><var>&gt;</var> (greater than)</li>
+                    <li><var>&lt;</var> (less than)</li>
+                    <li><var>@=</var> (contains IP address, only applicable to the IPv4 fields)</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Possible Value</strong><br/>
+                An arbitrary value (string, integer, regular expression, IP address, date, version) that will be used for comparison.<br/>
+                If the value contains whitespace, it should be put into double-quotes.<br/>
+                Dates should be given in YYYY-MM-DD format.
+            </li>
+        </ul>
+        <p>
+            Multiple conditional statements can be combined together with the help of
+            <var>AND</var>, <var>OR</var> and parentheses <var>(</var> <var>)</var>.<br/>
+            It is also possible to combine statements using SHIFT / CTRL + click on table cells.<br/>
+            ALT + click on a table cell causes filter expression to use regular expression operator.
+        </p>
+        <p>
+            Finally, there is a special form of parenthesized expression that performs logical 'not',
+            if parentheses are prepended by <var>NOT</var> or <var>!</var> suffix.<br/>
+            Note that there must be no space between the <var>NOT</var> and the opening parenthesis.
+        </p>
+        <p>Below are the examples of valid filter expressions:</p>
+        <ul>
+            <li><code>src = 10.250.1.0/24 AND dst = 10.136.159.0/25</code></li>
+            <li><code>srcIdent ~ ^XBID-PRD OR dstIdent ~ ^XBID-PRD</code></li>
+            <li><code>requestor = "John Doe" AND dstLabel !~ ^M7</code></li>
+            <li><code>src @= 10.136.31.12 AND (date &gt; 2018-12-01 OR date &lt; 2019-01-01)</code></li>
+            <li><code>requestor = "John Doe" AND NOT(date &gt; 2018-12-01 OR date &lt; 2019-01-01)</code></li>
+        </ul>
+    </article>
+
+    <table id="data-table" hidden>
+        <thead>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div id="error" hidden>
+    </div>
+
+</body>
+</html>
