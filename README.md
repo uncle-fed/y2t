@@ -42,4 +42,5 @@ But then again, there are probably hundreds of other JS libraries allowing you t
 Please understand this and don't ask for new features or support unless something is really broken in the current implementation.  
 I am publishing this on GitHub not to compete with other libraries but rather than a source of inspiration for others.  
 If you cannot make this work for you, please look elsewhere as I cannot afford time for individual support.  
+If you find it useful in your projects, I'd appreciate if you could give my effort some credit or attribution.
 Thank you for understanding.
